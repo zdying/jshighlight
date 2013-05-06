@@ -31,44 +31,13 @@ jshighlight-一款基于javascript的轻量级的代码着色插件
     <script src="../js/jshighlight.core-v1.0.0.min.js"></script>
 
 2. 自定义需要着色的语言所需要的样式，例如：
-
-    .php-com{
-        color: #CCC;
-    }
-    .php-mrk{
-        color: red;
-        font-weight: bold;
-    }
-    .php-bol{
-        color: #F92665;
-        font-style: italic;
-    }
-    .php-var{
-        color: #A6E22E;
-    }
-    .......
-    /* 也可以使用默认的样式，传入默认样式类名即可，
-     * 样式名称可以自由使用，比如注释对应的样式也可以用.key
-     * 默认样式如下：
-     */
-    .com{ color:#75715E } /*普通注释*/
-    .doc{ color:#48BEEF } /*文档注释*/
-    .str{ color:#E6DB74 } /*字符串*/
-    .key{ color:#48BEEF; font-weight: bold; font-style: italic } /*关键字*/
-    .obj{ color:#AE81FF; font-weight:bold } /*内置对象、函数*/
-    .num{ color:#F92672 } /*数字*/
-    .ope{ color:#FD971F } /*操作符*/
-    .bol{ color:#FF5600; font-style: italic } /*布尔值*/
-
-    .mrk{ color:#F92665 } /*html标签*/
-    .attr{ color:#A6E22E } /*属性名称*/
-    .val{ color:#E6DB74 } /*属性值*/
+    alert('hello');
 
 3. 定义提取需要着色的内容的正则，比如：
 
-    'com' : /(\/\*[\s\S]*?\*\/|\/\/.*|&lt;\!--[\s\S]*?--&gt;)/,  //普通注释
-    'mrk' : /(&lt;\?php|\?&gt;)/, //标签
-    'str' : /('(?:(?:\\'|[^'\r\n])*?)'|"(?:(?:\\"|[^"\r\n])*?)")/, //字符串
+        'com' : /(\/\*[\s\S]*?\*\/|\/\/.*|&lt;\!--[\s\S]*?--&gt;)/,  //普通注释
+        'mrk' : /(&lt;\?php|\?&gt;)/, //标签
+        'str' : /('(?:(?:\\'|[^'\r\n])*?)'|"(?:(?:\\"|[^"\r\n])*?)")/, //字符串
 
 4. 调用JSHL的extendLanguage方法：
 
