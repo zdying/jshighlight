@@ -1,0 +1,429 @@
+﻿<!DOCTYPE html>
+<HTML>
+<HEAD>
+<TITLE>jshightlight Example Page -- Default skin</TITLE>
+<link href="../theme/codeit-iPlastic.css" rel="stylesheet" />
+<style>
+    [data-language]:before{
+        font-style: italic;
+        font-size: 45px;
+        float: right;
+        margin-top: 10px;
+        color: goldenrod;
+        z-index: -1;
+        opacity: 0.3;
+        filter:alpha(opacity=30);
+    }
+    [data-language="javascript"]:before{
+        content: "JavaScript";
+    }
+    [data-language="html"]:before{
+        content: "html";
+    }
+    [data-language="css"]:before{
+        content: "css";
+    }
+    [id="php"]:before{
+        content: "php";
+    }
+
+  </style>
+</HEAD>
+<body>
+<pre>Array.prototype = {};
+function create(name, age) {
+　　var obj = new Object();
+　　obj.name = name;
+　　obj.age = age;
+　　obj.run = function () {
+　　　　return this.name +' '+ this.age;
+　　};
+　　return obj;
+}
+var obj1= create('ZXC', 10);    //第一个实例
+var obj2= create('CXZ', 20);    //第二个实例
+alert(obj1.run());
+alert(obj1.run());
+return</pre>
+<pre>
+/**
+ * 代码着色插件
+ * @name $.fn.codeit
+ * @constructor
+ * @return {*}
+ */
+ $.fn.codeit = function(){
+    /*
+     OK
+     */
+    var str = "这是一个 string the length is 20 true or false? don\"t do it!",  //TODO fix bug2
+        str1 = 'This is a string the length is 20 true or false? don\'t do it!',str1 = 'This is a string the length is 20 true or false? don\'t do it!',str1 = 'This is a string the length is 20 true or false? don\'t do it!',str1 = 'This is a string the length is 20 true or false? don\'t do it!',
+        num = 12.564340,
+        rate = 0.23,
+        age = this.age,
+        $this = $(this) = _this = this = this_ = thisi = this$_ = 0this = athis,
+        _true = $true,
+        win = windows.xp,
+        alert = window.alert,
+        rnd = Math.random() * 100,
+        num = 1.20e12 + 12.345E-102 - 20,  //TODO fix bug1
+        start = new Date(),
+        start = new function(),
+        start = new Function('args', 'alert(args);'),
+        start = news _Date(),
+
+        /*==测试==*/
+        hasShown = true, str1 = 'true 10',
+        // This is some text
+        /*
+         * Some Thins 好吧  'string' not true
+         */
+        _bool = _true;
+    if(num < -10){  //TODO highlight -10
+        str1 = '0'+num;
+        str1 += 'pm';
+    }else if(str1 === "0"){
+        str1 = '' + num;
+    }
+    for(var i=0; i <= 100; i++){ //TODO fix bug1
+        console.log("index:", i);
+    }
+    // my url http://sanjh.cn
+    Array.prototype.slice.call(arguments,1);   //截取参数
+}
+</pre>
+<pre id="js" data-language="javascript">
+/**
+* User:daiying.zhang
+* Date:13-4-16
+* Time:上午11:47
+* EMail:97532151@qq.com
+* Site: http://sanjh.cn
+*/
+;(function($) {
+    $.fn.jqdrag = function(option) {
+        var //$this = this,
+            defaults = {
+                type: 'xy',
+                trigger: 'self',
+                maxX: +Infinity,
+                maxY: +Infinity,
+                minX: -Infinity,
+                minY: -Infinity
+            },
+        //opt = $.extend(defaults, option),
+            OBJ_NAME = 'JQDrag',
+            obj = this.data(OBJ_NAME);
+        if(typeof option === 'string'){
+            if(obj){
+                if(option === 'getObject'){
+                    return obj
+                }else{
+                    if(obj[option]){
+                        obj[option].apply(obj,Array.prototype.slice.call(arguments,1));
+                    }
+                    return this
+                }
+            }else{
+                throw new Error('This object is ont available!');
+            }
+        }
+        return this.each(function(){
+            var jqd = new JQDrag($(this), $.extend({},defaults, option));
+            $(this).data(OBJ_NAME,jqd);
+        })
+    }
+
+    function JQDrag($obj,settings){
+        this.obj = $obj;
+        this.settings = settings;
+        this.trigger = this.settings.trigger == 'self' ? this.obj : $(this.settings.trigger);
+
+        var draged = false,//是否发生了拖动
+            start = {x: 0, y: 0},//鼠标按下的起点
+            end = {x: 0, y: 0},//鼠标移动的终点
+            loc = {x: 0, y: 0},//鼠标按下时元素的位置
+            targetLoc = {x: 0, y: 0},//元素目标坐标
+            dis = {x: 0, y: 0},//被拖动元素的偏移
+            opt = this.settings,
+            _this = this.obj;
+
+        this.trigger.live('mousedown',function(e) {
+            //onbeforedrag
+            if(opt.onbeforedrag) {
+                if(opt.onbeforedrag.call([0]) == false) {
+                    return false;
+                }
+            }
+            //鼠标按下时的位置
+            start.x = e.pageX;
+            start.y = e.pageY;
+            //鼠标按下时元素的位置
+            loc.x = parseInt(_this.css('left')) || 0;
+            loc.y = parseInt(_this.css('top')) || 0;
+            $(document).bind('mousemove.jdrag', function(e) {
+                //$this.clearSelection();
+                if(!draged) draged = true;
+                //当前鼠标的位置
+                end.x = e.pageX;
+                end.y = e.pageY;
+                if(opt.type == 'xy') {
+                    targetLoc = {
+                        x: Math.min(Math.max(loc.x + end.x - start.x, opt.minX), opt.maxX),
+                        y: Math.min(Math.max(loc.y + end.y - start.y, opt.minY), opt.maxY)
+                    };
+                    dis = {
+                        x: targetLoc.x - loc.x,
+                        y: targetLoc.y - loc.y
+                    }
+                    _this.css({
+                        left: targetLoc.x + 'px',
+                        top: targetLoc.y + 'px'
+                    });
+                } else if(opt.type == 'x') {
+                    targetLoc = {
+                        x: Math.min(Math.max(loc.x + end.x - start.x, opt.minX), opt.maxX),
+                        y: parseInt(_this.css('top'))
+                    };
+                    dis = {
+                        x: targetLoc.x - loc.x,
+                        y: 0
+                    }
+                    _this.css({
+                        left: targetLoc.x + 'px'
+                    });
+                }
+                else if(opt.type == 'y') {
+                    targetLoc = {
+                        x: parseInt(_this.css('left')),
+                        y: Math.min(Math.max(loc.y + end.y - start.y, opt.minY), opt.maxY)
+                    };
+                    dis = {
+                        x: 0,
+                        y: targetLoc.y - loc.y
+                    }
+                    _this.css({
+                        top: targetLoc.y + 'px'
+                    });
+                }
+                //ondrag
+                if(opt.ondrag) {
+                    opt.ondrag.call(_this[0], dis, targetLoc);
+                }
+            });
+            return false;
+        });
+        $(document).bind('mouseup.jqdrag',function(e) {
+            if(draged) {
+                if(opt.ondragend) {
+                    opt.ondragend.call(_this[0], dis);//将ondragend中的this指向当前被拖动的元素
+                }
+            }
+            $(this).unbind('mousemove.jdrag');
+            draged = false;
+        });
+    }
+    JQDrag.prototype.setOption = function(obj,update){
+        this.settings = $.extend(this.settings,obj);
+        update && this.update();
+        return this
+    }
+    JQDrag.prototype.update = function(obj){
+        obj && this.setOption(obj);
+        var obj = this.obj,
+            settings = this.settings;
+        obj.css({
+            'left' : Math.max(settings.minX,Math.min(parseInt(obj.css('left')),settings.maxX)) + 'px',
+            'top': Math.max(settings.minY,Math.min(parseInt(obj.css('top')),settings.maxY)) + 'px'
+        })
+        return this
+    }
+})(jQuery)
+</pre>
+<pre id="html" data-language="html">
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;This is the title&lt;/title&gt;
+        &lt;style&gt;
+            body{
+                font-size: 14px;
+                font-family: "Microsoft  YaHei";
+                background: gray;
+                margin: 0;
+                padding: 0;
+            }
+            ul,li{
+                margin: 0;
+                padding: 0;
+            }
+            h1,h2,h3,h4,h5,h6{
+                font-size: 14px;
+                font-weight: normal;
+            }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    <!--
+        <span id="test"></span>
+        <span id="test"></span>
+    -->
+    &lt;body&gt;
+        <span id="span" class="a" style="float:left;margin:0">This is some Text="span"</span>
+        <div id="span1">This is some Text</div>
+        <!-- Fuck You RegExp -->
+    <script>
+        var a = 0, b = 12.7563453454;
+        var b = "this is a string" ,
+            c = true;
+        var $ = function(id){
+            return parseInt(Math.random()*120);
+        }
+    </script>
+    &lt;script&gt;
+        ;(function($){
+            $.fn.codeit = function(){
+                return this.each(function(){
+                    //....
+                })
+            }
+        })(jQuery)
+    &lt;/script&gt;
+    &lt;img src="aaa.jpg" alt="text" /&gt;
+    &lt;br/&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<pre id="css" data-language="css">
+.aa{
+    color:white;
+    /*======*/
+    margin:0;
+    font-size:'15px';padding:"10px";
+    float:left;
+}
+#bb::selection{
+    color:white;
+    /*===
+      ===
+    */
+    margin:0;
+    font-size:'15px';padding:"10px";
+    float:left;
+}
+body{
+    font-family:12px "Microsoft YaHei",Consolas  /*==bug!!!!==*/
+}
+ul,li{
+    margin:0;
+    padding: 0;
+}
+ul,#li{
+    margin:0;
+    padding: 0;
+}
+ul li{
+    margin:0;
+    padding: 0;
+}
+mav#index{
+    float : right
+}
+.mav.index{
+    float:left;
+}
+nav:hover a, .li:hover a, #nav.cla:link{
+    color: red;
+}
+
+pre{
+    font-family:Monaco,Consolas,'Lucida Console','Courier New',serif;
+    font-size:13px;
+    line-height:18px;
+    padding:10px;
+    border:1px #ccc solid;
+    background:#0C1021;
+    color:#F8F8F8
+}
+/*==js styles==*/
+.com, .js-com{ color:gray; font-style:italic }
+.doc, .js-doc{ color:#09F }
+.str, .js-str{ color:#39B23A }
+.key, .js-key{ color:#B4DD28; font-weight:bold }
+.obj, .js-obj{ color:#B7630C; font-weight:bold }
+.num, .js-num{ color:red }
+.ope, .js-ope{ color:darkcyan }
+.bol, .js-bol{ color:brown; font-weight:bold }
+/*==html styles==*/
+.html-mrk{ color:#6D8FA9 }
+.html-attr{ color:#FF6400 }
+.html-val{ color:#61CE3C }
+.html-com{ color:gray }
+/*==css styles==*/
+.css-com{ color:gray }
+.css-key{ color:orange }
+.css-attr{ color:#FF6400 }
+.css-val{ color:#61CE3C }
+</pre>
+<pre id="php" data-language="html">
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;This is the title&lt;/title&gt;
+        <script>
+            //This is Zero
+            var a = NaN;
+            function getNull(){
+                return null;
+            }
+        </script>
+        <style>
+            body{
+                background: black;
+                font-weight: bold;
+            }
+            [data-role*="php"]:after{
+                display: block;
+            }
+        </style>
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;!--
+            &lt;span id="test"&gt;&lt;/span&gt;
+            &lt;span id="test"&gt;&lt;/span&gt;
+        --&gt;
+        &lt;span id="span" class="a" style="float:left;margin:0"&gt;This is some Text="span"&lt;/span&gt;
+        &lt;div id="span1"&gt;This is some Text&lt;/div&gt;
+        <!-- Fuck You RegExp -->
+        &lt;?php
+            /* ==Test PHP== */
+            echo 'This is some text';
+            date('yyyy-mm-dd');
+            $bol = true;
+            $var = 'this is not a $var'."this is not a $var";
+            //Test
+        ?&gt;
+        <style>
+            body{
+                margin: 0;
+            }
+        </style>
+        <script>
+            // This is first
+            var a = 0;
+            var b = "this is a string" ,
+                c = true;
+            var $ = function(){
+                return document.getElementById(id);
+            }
+        </script>
+        <script>
+            //This is second
+            var a = NaN;
+            function getNull(){
+                return null;
+            }
+        </script>
+    &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<script src="../js/jshighlight.core-v1.0.0.min.js"></script>
+</body>
+</html>
