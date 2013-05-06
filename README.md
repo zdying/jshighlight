@@ -1,80 +1,98 @@
-jquery.jscrollbar
-========================
-jquery.jscrollbar 是一个基于jQuery的滚动条插件，支持水平滚动条和垂直滚动条，支持鼠标键盘事件
-------------------------
+jshighlight
+===========
 
-### 主要功能
-1. 支持水平滚动条
-2. 支持垂直滚动条
-3. 自动判断水平滚动条和垂直滚动条是否显示
-4. 支持外部调用来滚动内容
-5. 支持滚动条部分样式自定义
-6. 支持键盘方向键控制
-7. 支持鼠标滚动(需要mousewheel插件)
-8. 支持滚动条显示位置设置(外部|悬浮)
-9. 支持手动更新界面
+jshighlight-一款基于javascript的轻量级的代码着色插件
+-----------
 
-### 依赖的库
-1. jQuery (http://jquery.com/)
-2. jquery.jqdrag (https://github.com/daiying-zhang/jquery.jqdrag)
-3. jquery.mousewheel (插件已经包含在本项目中，文件：jquery.mousewheel.min.js)
+###  插件特点
+1. 真正轻量级，JS代码压缩后3K左右；
+2. 调用方便，引入jshighlight核心js文件即可；
+3. 不依赖于任何其他库；
+4. 原生支持HTML、CSS、Javascript；
+5. 支持其他语言的轻松扩展；
+6. 显示行号，直接复制代码不会复制行号；
+7. 提供四套主题可选，默认使用Monokai样式主题；
 
-### 使用步骤
-1.在&lt;head&gt;&lt;/head&gt;或者&lt;body&gt;&lt;/body&gt;中引入下列文件:
+### 使用方法
+1. 在&lt;head&gt;中引入相应的样式文件：
+    <link href="../theme/jshighlight-default.css" rel="stylesheet" />
+2. 在&lt;/body&gt;前或者&lt;head&gt;中引入相应js文件：
+    <script src="../js/jshighlight.core-v1.0.0.min.js"></script>
+3. 在需要着色的pre标签中加入'data-language'属性，取值为：'javascript'|'html'|'css'，扩展后可以设置其他的值；
 
-    <!--必须引入-->
-    <script type="text/javascript" src="your-path/jquery-1.8.1.min.js"></script>
-    <!--如果需要支持鼠标滚动则引入，否则可以不引用-->
-    <script type="text/javascript" src="your-path/require/jquery.mousewheel.min.js"></script>
-    <!--必须引入-->
-    <script type="text/javascript" src="your-path/require/jquery.jqdrag-1.0.min.js"></script>
-    <!--必须引入-->
-    <script type="text/javascript" src="your-path/min/jquery.jscrollbar-1.0.2.min.js"></script>
+### 如何扩展
+1. 在&lt;/body&gt;前或者&lt;head&gt;中引入相应js文件：
 
-2.设置内容区域的大小:
+    <script src="../js/jshighlight.core-v1.0.0.min.js"></script>
+2. 自定义需要着色的语言所需要的样式，例如：
 
-    <!--设置区域大小，包括滚动条-->
-    <div style="width:1300px;height:600px;">Some long text or other elements...</div>
+    .php-com{
+        color: #CCC;
+    }
+    .php-mrk{
+        color: red;
+        font-weight: bold;
+    }
+    .php-bol{
+        color: #F92665;
+        font-style: italic;
+    }
+    .php-var{
+        color: #A6E22E;
+    }
+    .......
+    /* 也可以使用默认的样式，传入默认样式类名即可，
+     * 样式名称可以自由使用，比如注释对应的样式也可以用.key
+     * 默认样式如下：
+     */
+    .com{ color:#75715E } /*普通注释*/
+    .doc{ color:#48BEEF } /*文档注释*/
+    .str{ color:#E6DB74 } /*字符串*/
+    .key{ color:#48BEEF; font-weight: bold; font-style: italic } /*关键字*/
+    .obj{ color:#AE81FF; font-weight:bold } /*内置对象、函数*/
+    .num{ color:#F92672 } /*数字*/
+    .ope{ color:#FD971F } /*操作符*/
+    .bol{ color:#FF5600; font-style: italic } /*布尔值*/
 
-3.调用插件：
+    .mrk{ color:#F92665 } /*html标签*/
+    .attr{ color:#A6E22E } /*属性名称*/
+    .val{ color:#E6DB74 } /*属性值*/
+3. 定义提取需要着色的内容的正则，比如：
 
-    $(function(){
-        $('#test1,#test2').jscrollbar({
-            //some options
-        });
-    });
+    'com' : /(\/\*[\s\S]*?\*\/|\/\/.*|&lt;\!--[\s\S]*?--&gt;)/,  //普通注释
+    'mrk' : /(&lt;\?php|\?&gt;)/, //标签
+    'str' : /('(?:(?:\\'|[^'\r\n])*?)'|"(?:(?:\\"|[^"\r\n])*?)")/, //字符串
+4. 调用JSHL的extendLanguage方法：
 
-### 示例代码
-    $(function(){
-        $('#test1,#test2').jscrollbar({
-            width:12, //滚动条宽度
-            color:'orange', //滚动条颜色
-            opacity:0.7, //透明度
-            position:'inner', //滚动条位置
-            mouseScrollDirection:'horizontal' //鼠标滚动时滚动的方向
-        });
+    JSHL.extendLanguage('php',{
+       /*
+        * 每个分组对应的样式类名
+        * 比如：'com'中有一个分组，'mrk'中有一个分组，'key'中有两个分组，
+        * 那么： com中的分组对应'php-com','mrk'中的分组对应
+        * 'php-mrk','key'中的第一个分组对应'str',第二个对应'key'，以此类推；
+        */
+       cls : ['php-com','php-mrk','str','key','php-var','obj','num','php-bol','ope'],
+       reg : {
+            'com' : /(\/\*[\s\S]*?\*\/|\/\/.*|&lt;\!--[\s\S]*?--&gt;)/,  //普通注释
+            'mrk' : /(&lt;\?php|\?&gt;)/, //标签
+            'str' : /('(?:(?:\\'|[^'\r\n])*?)'|"(?:(?:\\"|[^"\r\n])*?)")/, //字符串
+            'key' : /(?:[^$_@a-zA-Z0-9])?(and|or|...|throw)(?![$_@a-zA-Z0-9])/, //关键字
+            'var' : /(\$[\w][\w\d]*)/, //变量名
+            'obj' : /(?:[^$_@A-Za-z0-9])?(echo|...|date)(?:[^$_@A-Za-z0-9])/, //内置函数(部分)
+            'num' : /\b(\d+(?:\.\d+)?(?:[Ee][-+]?(?:\d)+)?)\b/,  //数字
+            'bol' : /(?:[^$_@A-Za-z0-9])?(true|false)(?:[^$_@A-Za-z0-9])/, //布尔值
+            'ope' : /(==|=|===|\+|-|\+=|-=|\*=|\\=|%=|&lt;|&lt;=|&gt;|&gt;=|\.)/  //操作符
+        },
+        //如果这个语言是包含在html中的设置下列属性
+        wrapper: 'html',
+        content : {
+            lang : 'php', // 语言名称，在于pre标签的data-language一致
+            wrapper : /(<\?php(?:[\s\S]*?)\?>)/g // 需要着色的代码被包裹的形式
+        }
+    })
 
-        var jsb2 = $('#test2').jscrollbar('getObject');
-
-        setTimeout(function(){
-            $('#test2 img').css({width:'4000px'});
-                //滚动实例的链式调用，无法使用jQuery操作DOM的方法 [不推荐]
-                jsb2.updateUI()
-                     .scrollTo('x',100)
-                     .scrollBy('x',50);
-
-                //jQuery的链式调用，可以使用jQuery操作DOM的方法  [推荐]
-                $('#test1').jscrollbar('scrollBy','x',10)
-                           .jscrollbar('scrollTo','x',300)
-                           .animate({'opacity':0.8},1000);
-        },2000)
-    });
-
-### E-Mail
-
-如果你有什么好的意见或者建议，或者发现Bug，欢迎与我交流：
-97532151@qq.com
-
-### Site
-
-http://sanjh.cn
+### 联系我们
+如果你有更好的建议或者意见，或者发现bug，欢迎与我联系
+ Q Q:	97532151
+ Email:	97532151@qq.com
+ Site:	http://sanjh.cn
