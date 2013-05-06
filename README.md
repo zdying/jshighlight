@@ -91,4 +91,4 @@ jshighlight-一款基于javascript的轻量级的代码着色插件
 如果你有更好的建议或者意见，或者发现bug，欢迎与我联系
 Q Q:	97532151
 Email:	97532151@qq.com
-Site:	http://sanjh.cn	
+Site:	http://sanjh.cn
