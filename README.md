@@ -22,9 +22,9 @@ jshighlight-一款基于javascript的轻量级的代码着色插件
 
 ### 如何扩展
 1. 在&lt;/body&gt;前或者&lt;head&gt;中引入相应js文件：
-	<script src="../js/jshighlight.core-v1.0.0.min.js"></script>
+    <script src="../js/jshighlight.core-v1.0.0.min.js"></script>
 2. 自定义需要着色的语言所需要的样式，例如：
-	.php-com{
+    .php-com{
         color: #CCC;
     }
     .php-mrk{
@@ -43,20 +43,20 @@ jshighlight-一款基于javascript的轻量级的代码着色插件
      * 样式名称可以自由使用，比如注释对应的样式也可以用.key
      * 默认样式如下：
      */
-	.com{ color:#75715E } /*普通注释*/
-	.doc{ color:#48BEEF } /*文档注释*/
-	.str{ color:#E6DB74 } /*字符串*/
-	.key{ color:#48BEEF; font-weight: bold; font-style: italic } /*关键字*/
-	.obj{ color:#AE81FF; font-weight:bold } /*内置对象、函数*/
-	.num{ color:#F92672 } /*数字*/
-	.ope{ color:#FD971F } /*操作符*/
-	.bol{ color:#FF5600; font-style: italic } /*布尔值*/
+    .com{ color:#75715E } /*普通注释*/
+    .doc{ color:#48BEEF } /*文档注释*/
+    .str{ color:#E6DB74 } /*字符串*/
+    .key{ color:#48BEEF; font-weight: bold; font-style: italic } /*关键字*/
+    .obj{ color:#AE81FF; font-weight:bold } /*内置对象、函数*/
+    .num{ color:#F92672 } /*数字*/
+    .ope{ color:#FD971F } /*操作符*/
+    .bol{ color:#FF5600; font-style: italic } /*布尔值*/
 
-	.mrk{ color:#F92665 } /*html标签*/
-	.attr{ color:#A6E22E } /*属性名称*/
-	.val{ color:#E6DB74 } /*属性值*/
+    .mrk{ color:#F92665 } /*html标签*/
+    .attr{ color:#A6E22E } /*属性名称*/
+    .val{ color:#E6DB74 } /*属性值*/
 3. 定义提取需要着色的内容的正则，比如：
-	'com' : /(\/\*[\s\S]*?\*\/|\/\/.*|&lt;\!--[\s\S]*?--&gt;)/,  //普通注释
+    'com' : /(\/\*[\s\S]*?\*\/|\/\/.*|&lt;\!--[\s\S]*?--&gt;)/,  //普通注释
     'mrk' : /(&lt;\?php|\?&gt;)/, //标签
     'str' : /('(?:(?:\\'|[^'\r\n])*?)'|"(?:(?:\\"|[^"\r\n])*?)")/, //字符串
 4. 调用JSHL的extendLanguage方法：
@@ -89,6 +89,9 @@ jshighlight-一款基于javascript的轻量级的代码着色插件
 
 ### 联系我们
 如果你有更好的建议或者意见，或者发现bug，欢迎与我联系
+
 Q Q:	97532151
+
 Email:	97532151@qq.com
+
 Site:	http://sanjh.cn
