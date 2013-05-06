@@ -22,8 +22,10 @@ jshighlight-一款基于javascript的轻量级的代码着色插件
 
 ### 如何扩展
 1. 在&lt;/body&gt;前或者&lt;head&gt;中引入相应js文件：
+
     <script src="../js/jshighlight.core-v1.0.0.min.js"></script>
 2. 自定义需要着色的语言所需要的样式，例如：
+
     .php-com{
         color: #CCC;
     }
@@ -56,10 +58,12 @@ jshighlight-一款基于javascript的轻量级的代码着色插件
     .attr{ color:#A6E22E } /*属性名称*/
     .val{ color:#E6DB74 } /*属性值*/
 3. 定义提取需要着色的内容的正则，比如：
+
     'com' : /(\/\*[\s\S]*?\*\/|\/\/.*|&lt;\!--[\s\S]*?--&gt;)/,  //普通注释
     'mrk' : /(&lt;\?php|\?&gt;)/, //标签
     'str' : /('(?:(?:\\'|[^'\r\n])*?)'|"(?:(?:\\"|[^"\r\n])*?)")/, //字符串
 4. 调用JSHL的extendLanguage方法：
+
     JSHL.extendLanguage('php',{
        /*
         * 每个分组对应的样式类名
@@ -89,9 +93,6 @@ jshighlight-一款基于javascript的轻量级的代码着色插件
 
 ### 联系我们
 如果你有更好的建议或者意见，或者发现bug，欢迎与我联系
-
-Q Q:	97532151
-
-Email:	97532151@qq.com
-
-Site:	http://sanjh.cn
+ Q Q:	97532151
+ Email:	97532151@qq.com
+ Site:	http://sanjh.cn
