@@ -104,14 +104,9 @@ return</pre>
     $.fn.jqdrag = function(option) {
         var //$this = this,
             defaults = {
-                type: 'xy',
-                trigger: 'self',
-                maxX: +Infinity,
-                maxY: +Infinity,
-                minX: -Infinity,
-                minY: -Infinity
+                type: 'xy', trigger: 'self', maxX: +Infinity, maxY: +Infinity, minX: -Infinity, minY: -Infinity
             },
-        //opt = $.extend(defaults, option),
+            //opt = $.extend(defaults, option),
             OBJ_NAME = 'JQDrag',
             obj = this.data(OBJ_NAME);
         if(typeof option === 'string'){
@@ -248,13 +243,6 @@ return</pre>
             body{
                 font-size: 14px;
                 font-family: "Microsoft  YaHei";
-                background: gray;
-                margin: 0;
-                padding: 0;
-            }
-            ul,li{
-                margin: 0;
-                padding: 0;
             }
             h1,h2,h3,h4,h5,h6{
                 font-size: 14px;
@@ -262,17 +250,13 @@ return</pre>
             }
         &lt;/style&gt;
     &lt;/head&gt;
-    <!--
-        <span id="test"></span>
-        <span id="test"></span>
-    -->
+    <!-- <span id="test"></span> -->
     &lt;body&gt;
         <span id="span" class="a" style="float:left;margin:0">This is some Text="span"</span>
         <div id="span1">This is some Text</div>
-        <!-- Fuck You RegExp -->
     <script>
-        var a = 0, b = 12.7563453454;
-        var b = "this is a string" ,
+        var a = 0, b = 12.7563453454,
+            b = "this is a string" ,
             c = true;
         var $ = function(id){
             return parseInt(Math.random()*120);
@@ -296,21 +280,18 @@ return</pre>
 .aa{
     color:white;
     /*======*/
-    margin:0;
-    font-size:'15px';padding:"10px";
-    float:left;
+    margin:0; font-size:'15px';padding:"10px"; float:left;
 }
 #bb::selection{
     color:white;
-    /*===
-      ===
-    */
-    margin:0;
-    font-size:'15px';padding:"10px";
+    /*
+     *  ===
+     */
+    margin:0;font-size:'15px';padding:"10px";
     float:left;
 }
 body{
-    font-family:12px "Microsoft YaHei",Consolas  /*==bug!!!!==*/
+    font-family:12px "Microsoft YaHei",Consolas
 }
 ul,li{
     margin:0;
