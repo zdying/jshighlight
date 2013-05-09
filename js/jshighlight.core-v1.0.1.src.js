@@ -157,7 +157,7 @@ function JSHL(langName){
 
     for(; index < len; index += 1){
         pre = pres[index];
-        lang = pre.getAttribute('data-language').toLowerCase() || lang;
+        lang = (pre.getAttribute('data-language') || lang).toLowerCase();
         if(typeof langName !== 'undefined' && lang !== langName){
             continue
         }

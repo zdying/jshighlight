@@ -8,6 +8,8 @@ pre{
     color:#000066;
     overflow-x: auto;
     position: relative;
+    word-wrap: normal;
+    *padding-bottom: 20px;
 }
 .jshl-linenum{
     position: absolute;
@@ -21,8 +23,6 @@ pre{
     border-right:2px #00B418 solid;
     padding-right:2px;
     text-align:right;
-    word-wrap: normal;
-    *padding-bottom: 20px;
 }
 /*==js styles==*/
 .com{ color:#00B418 }
