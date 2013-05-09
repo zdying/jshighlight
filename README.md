@@ -21,14 +21,14 @@ jshighlight-一款基于javascript的轻量级的代码着色插件
 2. 在&lt;/body&gt;前或者&lt;head&gt;中引入相应js文件：
 
         <!--核心js文件-->
-        <script src="../js/jshighlight.core-v1.0.0.min.js"></script>
+        <script src="../js/jshighlight.core-v1.0.1.min.js"></script>
 
 3. 在需要着色的pre标签中加入'data-language'属性，取值为：'javascript'|'html'|'css'，扩展后可以设置其他的值；
 
 ### 如何扩展
 1. 在&lt;/body&gt;前或者&lt;head&gt;中引入相应js文件：
 
-        <script src="../js/jshighlight.core-v1.0.0.min.js"></script>
+        <script src="../js/jshighlight.core-v1.0.1.min.js"></script>
 
 2. 自定义需要着色的语言所需要的样式，例如：
 
