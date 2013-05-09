@@ -77,7 +77,7 @@ function JSHL(langName){
      */
     function hlbylanguage(html, lang, findParent){
         //var ln = addLineNumber(html.split('\n').length);
-        console.log(lang,html);
+        //console.log(lang,html);
         if(!(lang in JSHL.language))
             return html + (findParent ? addLineNumber(html.split('\n').length) : '')
         var l = JSHL.language[lang];
