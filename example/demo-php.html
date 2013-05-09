@@ -35,7 +35,7 @@
   </style>
 </HEAD>
 <BODY>
-<pre id="php" data-language="php">
+<pre id="php" data-language="Php">
 &lt;html&gt;
     &lt;head&gt;
         &lt;title&gt;This is the title&lt;/title&gt;
@@ -100,6 +100,19 @@
 </pre>
 <pre data-language="php">
 &lt;?php
+    /**
+     * 发送电子邮件
+     */
+    $to = "someone@example.com";
+    $subject = "Test mail";
+    $message = "Hello! This is a simple email message.";
+    $from = "someonelse@example.com";
+    $headers = "From: $from";
+    mail($to,$subject,$message,$headers);
+    echo "Mail Sent.";
+?&gt;
+
+&lt;?php
 /*
  * PHP文件上传
  */
@@ -135,7 +148,7 @@ function do_upload($upload_dir,$upload_url)
 ?&gt;
 </pre>
 <!--需要先引入jshighlight.core文件再引入扩展语言的文件-->
-<script src="../js/jshighlight.core-v1.0.0.min.js"></script>
+<script src="../js/jshighlight.core-v1.0.0.src.js"></script>
 <script src="../js/lang-php.min.js"></script>
 </BODY>
 </HTML>

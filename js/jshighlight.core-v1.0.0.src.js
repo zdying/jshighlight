@@ -47,7 +47,7 @@ JSHL.extendLanguage = function(langName, langObj){
     if(langObj.wrapper){
         JSHL.language[langObj.wrapper].include.push(langObj.content);
     }
-    JSHL(langName, langObj.wrapper);
+    JSHL(langName);
 }
 
 function JSHL(langName){
@@ -59,7 +59,7 @@ function JSHL(langName){
         html,outer;
 
     function parseHTML(html){
-        return html.replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        return html.replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/(\r?\n)$/g,'');
     }
 
     function addLineNumber(nums){
@@ -76,13 +76,13 @@ function JSHL(langName){
      * @returns {*}
      */
     function hlbylanguage(html, lang, findParent){
+        //var ln = addLineNumber(html.split('\n').length);
+        if(!(lang in JSHL.language)) return html;
         var l = JSHL.language[lang];
-        if(!l) return html;
         if(findParent && l.wrapper) l = JSHL.language[l.wrapper];
         if(!l) return html;
-        html = html.replace(/(\r?\n)$/g,'');
         html = '|'+html+'|';
-        var start = new Date(),
+        var //start = new Date(),
             pattern = l.reg,
             markup = l.markup,
             cls = l.cls || [],
@@ -150,17 +150,18 @@ function JSHL(langName){
 
     for(; index < len; index += 1){
         pre = pres[index];
-        lang = pre.getAttribute('data-language') || lang;
+        lang = pre.getAttribute('data-language').toLowerCase() || lang;
         if(typeof langName !== 'undefined' && lang !== langName){
-            continue
-        }
-        html = parseHTML(pre.innerHTML);
-
-        if(pre.outerHTML){
-            outer = pre.outerHTML.match(/<\w+\s*(.*?)>/)[1];
-            pre.outerHTML = '<pre '+outer+'>'+ hlbylanguage(html,lang,true) + '</pre>';
+            //continue
         }else{
-            pre.innerHTML = hlbylanguage(html,lang,true);
+            html = parseHTML(pre.innerHTML);
+
+            if(pre.outerHTML){
+                outer = pre.outerHTML.match(/<\w+\s*(.*?)>/)[1];
+                pre.outerHTML = '<pre '+outer+'>'+ hlbylanguage(html,lang,true) + '</pre>';
+            }else{
+                pre.innerHTML = hlbylanguage(html,lang,true);
+            }
         }
     }
 }

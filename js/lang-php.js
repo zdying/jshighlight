@@ -6,7 +6,9 @@
  * Site: http://sanjh.cn
  */
 JSHL.extendLanguage('php',{
+    //对应的类名称
     cls : ['php-com','php-mrk','str','key','php-var','obj','num','php-bol','ope'],
+    //相应的正则表达式
     reg : {
         'com' : /(\/\*[\s\S]*?\*\/|\/\/.*|&lt;\!--[\s\S]*?--&gt;)/,  //普通注释
         'mrk' : /(&lt;\?php|\?&gt;)/, //标签
@@ -18,7 +20,9 @@ JSHL.extendLanguage('php',{
         'bol' : /(?:[^$_@A-Za-z0-9])?(true|false)(?:[^$_@A-Za-z0-9])/, //布尔值
         'ope' : /(==|=|===|\+|-|\+=|-=|\*=|\\=|%=|&lt;|&lt;=|&gt;|&gt;=|\.)/  //操作符
     },
+    //父级语言
     wrapper: 'html',
+    //内容
     content : {
         lang : 'php',
         wrapper : /(<\?php(?:[\s\S]*?)\?>)/g

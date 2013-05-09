@@ -22,6 +22,8 @@ pre{
     border-right:2px #CCC solid;
     padding-right:2px;
     text-align:right;
+    word-wrap: normal;
+    *padding-bottom: 20px;
 }
 /*==js styles==*/
 .com{ color:#AEAEAE }

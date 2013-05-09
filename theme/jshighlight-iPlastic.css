@@ -8,6 +8,8 @@ pre{
     color:#000066;
     overflow-x: auto;
     position: relative;
+    word-wrap: normal;
+    *padding-bottom: 20px;
 }
 .codeit-linenum{
     position: absolute;
