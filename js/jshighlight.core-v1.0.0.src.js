@@ -63,7 +63,7 @@ function JSHL(langName){
     }
 
     function addLineNumber(nums){
-        var html = ['<div class="','codeit-linenum','">'], i=1;
+        var html = ['<div class="','jshl-linenum','">'], i=1;
         for(; i< nums; i+=1) html.push(i+'.<br/>');
         html.push(nums,'.</div>');
         return html.join('')
@@ -77,11 +77,19 @@ function JSHL(langName){
      */
     function hlbylanguage(html, lang, findParent){
         //var ln = addLineNumber(html.split('\n').length);
-        if(!(lang in JSHL.language)) return html;
+        console.log(lang,html);
+        if(!(lang in JSHL.language))
+            return html + (findParent ? addLineNumber(html.split('\n').length) : '')
         var l = JSHL.language[lang];
         if(findParent && l.wrapper) l = JSHL.language[l.wrapper];
-        if(!l) return html;
+        if(!l) return html + (findParent ? addLineNumber(html.split('\n').length) : '')
         html = '|'+html+'|';
+
+        var ln = /(&lt;div class="jshl-linenum"&gt;(?:.*?)&lt;\/div&gt;)/g;
+
+        if(ln.test(html)){ //已经加入了行号
+            html = html.replace(ln,'{@jshl-linenum@}');
+        }
         var //start = new Date(),
             pattern = l.reg,
             markup = l.markup,
@@ -144,24 +152,22 @@ function JSHL(langName){
             html = html.replace(new RegExp('{@.*?'+placeholder[i].replace(/[{@}]/g,'')+'.*?@}','g'),placeholder[i])
                        .replace(placeholder[i], olanghl[i]);
         }
-        html = html.replace(/^(\|)|(\|)$/g,'') + (findParent ? addLineNumber(html.split('\n').length) : '');
-        return html;
+        return html.replace(/^(\|)|(\|)$/g,'').replace('{@jshl-linenum@}','') + (findParent ? addLineNumber(html.split('\n').length) : '');
     }
 
     for(; index < len; index += 1){
         pre = pres[index];
         lang = pre.getAttribute('data-language').toLowerCase() || lang;
         if(typeof langName !== 'undefined' && lang !== langName){
-            //continue
-        }else{
-            html = parseHTML(pre.innerHTML);
+            continue
+        }
+        html = parseHTML(pre.innerHTML);
 
-            if(pre.outerHTML){
-                outer = pre.outerHTML.match(/<\w+\s*(.*?)>/)[1];
-                pre.outerHTML = '<pre '+outer+'>'+ hlbylanguage(html,lang,true) + '</pre>';
-            }else{
-                pre.innerHTML = hlbylanguage(html,lang,true);
-            }
+        if(pre.outerHTML){
+            outer = pre.outerHTML.match(/<\w+\s*(.*?)>/)[1];
+            pre.outerHTML = '<pre '+outer+'>'+ hlbylanguage(html,lang,true) + '</pre>';
+        }else{
+            pre.innerHTML = hlbylanguage(html,lang,true);
         }
     }
 }

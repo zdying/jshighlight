@@ -22,7 +22,7 @@ JSHL.extendLanguage('php',{
     },
     //父级语言
     wrapper: 'html',
-    //内容
+    //内容 ,用于push到wrapper的include
     content : {
         lang : 'php',
         wrapper : /(<\?php(?:[\s\S]*?)\?>)/g

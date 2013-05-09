@@ -11,7 +11,7 @@ pre{
     word-wrap: normal;
     *padding-bottom: 20px;
 }
-.codeit-linenum{
+.jshl-linenum{
     position: absolute;
     z-index: 0;
     left: 0;

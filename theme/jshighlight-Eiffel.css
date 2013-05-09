@@ -9,7 +9,7 @@ pre{
     overflow-x: auto;
     position: relative;
 }
-.codeit-linenum{
+.jshl-linenum{
     position: absolute;
     z-index: 0;
     left: 0;
