@@ -1,0 +1,93 @@
+#addform{
+    display: block;
+    height: 100%;
+    width: 100%;
+    background: white;
+    padding: 10px;
+    font-family: Monaco,"Lucida Console",Arial,sans-serif;
+    font-size: 14px;
+}
+#jshl-lang{
+    width: 150px;
+    height: 25px;
+}
+#jshl-code{
+    height: 320px;
+    width: 770px;
+}
+#jshl-title{
+    width: 776px;
+    height: 62px;
+    background: url(../images/title.jpg);
+    margin-bottom:5px;
+}
+#addform select,#addform textarea, #jshl_seting_form input,#jshl_seting_form textarea{
+     border: 1px solid #09F;
+     border-radius: 3px;
+     outline: none;
+     margin-bottom: 5px;
+     font-family: Monaco,"Lucida Console",Arial,sans-serif;
+}
+#addform select:focus,#addform textarea:focus,#jshl_seting_form input:focus,#jshl_seting_form textarea:focus{
+    box-shadow: 0 0 2px #09F;
+}
+.btn{
+    border: blue;
+    background: #09F;
+    padding: 8px 25px;
+    *padding:4px 12px; 
+    _padding:4px 12px;
+    border-radius: 5px;
+    border:0;
+    color: white;
+    margin-right:10px;
+}
+#jshl-cancel{
+    background: #888;
+}
+.inputForm{
+    width: 800px;
+    height: 500px;
+    position: absolute;
+    left: 50%;
+    top:50%;
+    margin-top: -250px;
+    margin-left: -400px;
+    border-radius: 6px;
+    border:8px solid black;
+    border: 8px solid rgba(0,0,0,0.5);
+    overflow: hidden;
+}
+
+#jshl_seting_form{
+    border: 1px solid #CCC;
+    border-radius: 4px;
+    margin: 15px;
+    padding: 0 10px;
+    line-height: 30px;
+    font-family: Monaco,"Lucida Console",Arial,sans-serif;
+    font-size: 13px;
+}
+.setting_form{
+    float: left;
+}
+#theme_preview{
+    width: 623px;
+    height: 290px;
+    float: left;
+    margin-left: 20px;
+    margin-top: 15px;
+    border-radius: 5px;
+}
+#theme_preview.default{
+    background: url(../images/default.png);
+}
+#theme_preview.Blackboard{
+    background: url(../images/Blackboard.png);
+}
+#theme_preview.Eiffel{
+    background: url(../images/Eiffel.png);
+}
+#theme_preview.iPlastic{
+    background: url(../images/iPlastic.png);
+}

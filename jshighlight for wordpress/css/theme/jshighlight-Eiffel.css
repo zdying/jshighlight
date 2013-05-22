@@ -1,0 +1,39 @@
+pre.jshl_code,pre{
+    font-family:Monaco,Consolas,"Lucida Console","Courier New",serif;
+    font-size:13px;
+    line-height:18px;
+    padding:10px 10px 10px 42px;
+    border:1px #CCC solid;
+    background:#FFFFFF;
+    color:#000066;
+    overflow-x: auto;
+    position: relative;
+    word-wrap: normal;
+    *padding-bottom: 20px;
+}
+.jshl-linenum{
+    position: absolute;
+    z-index: 0;
+    left: 0;
+    _left:-42px;
+    top: 10px;
+    _top:9px;
+    line-height:inherit;
+    width: 32px;
+    border-right:2px #00B418 solid;
+    padding-right:2px;
+    text-align:right;
+}
+/*==js styles==*/
+.com{ color:#00B418 }
+.doc{ color:#0099FF }
+.str{ color:#D80800 }
+.key{ color:#0000FF; font-weight: bold }
+.obj{ color:#48BEEF; font-weight:bold }
+.num{ color:#A55CD6 }
+.ope{ color:#687687 }
+.bol{ color:#FF00FF; font-weight:bold; font-style: italic }
+/*==html styles==*/
+.mrk{ color:#6D8FA9 }
+.attr{ color:#FF6400 }
+.val{ color:#61CE3C }
