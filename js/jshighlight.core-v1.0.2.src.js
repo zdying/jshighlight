@@ -85,7 +85,7 @@ function JSHL(langName){
         if(!l) return html + (findParent ? addLineNumber(html.split('\n').length) : '')
         html = ' '+html+' ';
 
-        var ln = /(&lt;div class="jshl-linenum"&gt;(?:.*?)&lt;\/div&gt;)/g;
+        var ln = /(&lt;div class="?jshl-linenum"?&gt;(?:.*?)&lt;\/div&gt;)/ig;
 
         if(ln.test(html)){ //已经加入了行号
             html = html.replace(ln,'{@jshl-linenum@}');
