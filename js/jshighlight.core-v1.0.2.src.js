@@ -42,6 +42,11 @@ JSHL.language.css = {
     }
 }
 
+/**
+ * 扩展语言
+ * @param {String} langName 语言名称
+ * @param {Object} langObj  配置参数
+ */
 JSHL.extendLanguage = function(langName, langObj){
     JSHL.language[langName] = langObj;
     if(langObj.wrapper){
@@ -58,10 +63,20 @@ function JSHL(langName){
         lang = 'javascript',
         html,outer;
 
+    /**
+     * 转义html字符
+     * @param {String} html 要转义的html代码
+     * @returns {String} 转义后的html字符串
+     */
     function parseHTML(html){
         return html.replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/(\r?\n)$/g,'');
     }
 
+    /**
+     * 添加行号
+     * @param {Number} nums 行数
+     * @returns {string}
+     */
     function addLineNumber(nums){
         var html = ['<div class="','jshl-linenum','">'], i=1;
         for(; i< nums; i+=1) html.push(i+'.<br/>');
