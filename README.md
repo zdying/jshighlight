@@ -102,7 +102,7 @@ jshighlight-一款基于javascript的轻量级的代码着色插件
 ### E-Mail
 
 如果你有什么好的意见或者建议，或者发现Bug，欢迎与我交流：
-97532151@qq.com
+97532151@qq.com/zdying@live.com
 
 ### Site
 
