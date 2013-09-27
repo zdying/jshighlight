@@ -42,6 +42,11 @@ JSHL.language.css = {
     }
 }
 
+/**
+ * 扩展语言
+ * @param {String} langName 语言名称
+ * @param {Object} langObj  配置参数
+ */
 JSHL.extendLanguage = function(langName, langObj){
     JSHL.language[langName] = langObj;
     if(langObj.wrapper){
@@ -58,10 +63,20 @@ function JSHL(langName){
         lang = 'javascript',
         html,outer;
 
+    /**
+     * 转义html字符
+     * @param {String} html 要转义的html代码
+     * @returns {String} 转义后的html字符串
+     */
     function parseHTML(html){
         return html.replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/(\r?\n)$/g,'');
     }
 
+    /**
+     * 添加行号
+     * @param {Number} nums 行数
+     * @returns {string}
+     */
     function addLineNumber(nums){
         var html = ['<div class="','jshl-linenum','">'], i=1;
         for(; i< nums; i+=1) html.push(i+'.<br/>');
@@ -77,7 +92,6 @@ function JSHL(langName){
      */
     function hlbylanguage(html, lang, findParent){
         //var ln = addLineNumber(html.split('\n').length);
-        //console.log(lang,html);
         if(!(lang in JSHL.language))
             return html + (findParent ? addLineNumber(html.split('\n').length) : '')
         var l = JSHL.language[lang];
@@ -97,13 +111,12 @@ function JSHL(langName){
             defaultCls = (cls.length === 0),
             inc = l.include,
             olanghl=[],placeholder=[],pl='',wrapper,
-            //console.log(lang +' start...');
             //  文档注释 --> com --> mrk --> 关键字-->vars -->内置对象-->数字-->boolean-->操作符
             type = ['doc','com','mrk','str','key','var','obj','num','bol','ope'],
             p = [], len = type.length, i = 0;
 
         /*if(cls.length === 0 || pattern.length === 0){
-         return
+            return
          }*/
         for(; i< len; i+=1){
             if(pattern[type[i]]){
@@ -118,7 +131,6 @@ function JSHL(langName){
             for(i=0; i< inc.length; i+=1){
                 wrapper = new RegExp(inc[i].wrapper.source.replace(/</g,'&lt;').replace(/>/g,'&gt;'),'gi');
                 html = html.replace(wrapper,function($0,$1){
-                    //console.log("$0:",$0,"$1",$1);
                     pl = '{@'+Math.random()+'@}';
                     placeholder.push(pl);
                     olanghl.push(hlbylanguage($1,inc[i].lang, false))
@@ -127,7 +139,6 @@ function JSHL(langName){
             }
         }
         html = html.replace(pattern,function(){
-            //console.log(arguments)
             var args = Array.prototype.slice.call(arguments,0),
                 currArg1 = null,
                 currArg = null,
@@ -152,7 +163,15 @@ function JSHL(langName){
             html = html.replace(new RegExp('{@.*?'+placeholder[i].replace(/[{@}]/g,'')+'.*?@}','g'),placeholder[i])
                        .replace(placeholder[i], olanghl[i]);
         }
-        return html.replace(/^(\s)|(\s)$/g,'').replace('{@jshl-linenum@}','') + (findParent ? addLineNumber(html.split('\n').length) : '');
+
+        /*
+         * 替换css第一行首多出一个空格的bug
+         * 感谢"落单的孤鸟"反馈
+         */
+        function rep($0){
+            return /^\s+$/.test($0) ? "" : $0.replace(/(\s+)$/,"")
+        }
+        return html.replace(/^(\<.*?\>)*(\s)|(\s)$/g,rep).replace('{@jshl-linenum@}','') + (findParent ? addLineNumber(html.split('\n').length) : '');
     }
 
     for(; index < len; index += 1){
